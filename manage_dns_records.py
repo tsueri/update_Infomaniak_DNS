@@ -80,9 +80,13 @@ class InfomaniakAPI:
                 return domain_name
             return f"{record_source}.{domain_name}" if not record_source.endswith(domain_name) else record_source
 
+        # Adjusted matching logic to handle both root and subdomains
         matching_records = [
             record for record in records
-            if record["type"] == "A" and normalize_source(record["source"]) == f"{source}.{domain_name}" and record["target"] == target
+            if record["type"] == "A" and (
+                (normalize_source(record["source"]) == domain_name and relative_source == "") or
+                (normalize_source(record["source"]) == f"{relative_source}.{domain_name}")
+            ) and record["target"] == target
         ]
 
         if not matching_records:
