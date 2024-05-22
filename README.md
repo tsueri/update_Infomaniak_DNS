@@ -7,6 +7,12 @@ You need a API-Key from [here](https://manager.infomaniak.com/v3/ng/profile/user
 
 ### Usage
 
+#### Export INFOMANIAK_API_TOKEN
+
+```bash
+export INFOMANIAK_API_TOKEN="your_infomaniak_api_token"
+```
+
 #### Add an A Record
 
 ```bash
