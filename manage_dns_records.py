@@ -5,7 +5,7 @@ import idna
 import requests
 import os
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 class InfomaniakAPI:
@@ -78,11 +78,11 @@ class InfomaniakAPI:
         def normalize_source(record_source):
             if record_source in ("", "."):
                 return domain_name
-            return f"{record_source}.{domain_name}" if not record_source.endswith(f".{domain_name}") else record_source
+            return f"{record_source}.{domain_name}" if not record_source.endswith(domain_name) else record_source
 
         matching_records = [
             record for record in records
-            if record["type"] == "A" and normalize_source(record["source"]) == domain_name and record["target"] == target
+            if record["type"] == "A" and normalize_source(record["source"]) == f"{source}.{domain_name}" and record["target"] == target
         ]
 
         if not matching_records:
