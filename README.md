@@ -67,3 +67,7 @@ Example for a subdomain:
 ```bash
 python manage_dns_records.py example.com www 123.124.125.126 update 231.232.233.324
 ```
+
+#### Footnote
+
+This script is inspired from their [certbot-script](https://github.com/Infomaniak/certbot-dns-infomaniak/blob/main/certbot_dns_infomaniak/dns_infomaniak.py).
